@@ -78,7 +78,15 @@
                             <show_in_store>0</show_in_store>
 							<comment>Set 0 to display all lines</comment>
 						</nbmaxlines>
-						
+						<displayadmintab translate="label" module="livechat">
+							<label>Display admin tab</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+						</displayadmintab>
                     </fields>
                 </general>
                 <display translate="label" module="livechat">
