@@ -38,32 +38,29 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 		return ($result);
 	}
 	
-	public function getmessages($session_id)
+	public function getmessages($customer_session_id)
 	{
-		$session_id = (int)$session_id;
 		$result = array();
 		$session = Mage::getModel('livechat/session');
-		if ($session->Exist($session_id))
+		if ($session->Exist($customer_session_id))
 		{
 			$messages = $session->getMessages();
 			foreach ($messages as $message)
 			{
+				$message->setMessage($this->removeForbiddenChars($message->getMessage()));
 				$result[] = $message->toArray();
 			}
 		}
 		return ($result);
 	}
 	
-	public function sendmessage($session_id, $autor, $message)
+	public function sendmessage($customer_session_id, $autor, $message)
 	{
-		$session_id = $session_id;
 		$session = Mage::getModel('livechat/session');
-		if ($session->Exist($session_id))
+		if ($session->Exist($customer_session_id))
 		{
 			$session->saveMessage($autor, $message);
-			//return true;
 		}
-		//return false;
 	}
 	
 	public function updatesessions($session_list)
@@ -124,6 +121,10 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 		{
 			$session->load($sessionData['id']);
 			$newMessages = array_merge($session->getNewMessages($sessionData['messages']), $newMessages);
+		}
+		foreach ($newMessages as $key => $val)
+		{
+			$newMessages[$key]['message'] = $this->removeForbiddenChars($newMessages[$key]['message']);
 		}
 		return ($newMessages);
 	}
@@ -226,5 +227,28 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 			}
 		}
 		return ($data);
+	}
+	
+	private function removeForbiddenChars($str)
+	{
+		$forbiden_chars = array(
+				'&' => '&amp;',
+				'%' => '&#37;',
+				'<' => '&lt;',
+				'>' => '&gt;',
+				'!' => '&#124;',
+				'"' => '&quot;',
+				"'" => '&#39;',
+				'$' => '&#36;',
+				'+' => '&#43;',
+				'-' => '&minus;',
+				'(' => '&#40;',
+				')' => '&#41;'
+				);
+		foreach ($forbiden_chars as $char => $replacement)
+		{
+			$str = str_replace($replacement, $char, $str);
+		}
+		return $str;
 	}
 }
