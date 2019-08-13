@@ -50,14 +50,14 @@ class Beck_LiveChat_Block_Operator_Edit_Form extends Mage_Adminhtml_Block_Widget
 			foreach ($groupCollection as $group)
 			{
 				$storeCollection = $group->getStoreCollection();
-				$values[$group->getName()]['value'] = array();
-				$values[$group->getName()]['label'] = $group->getName();
+				$values[$group->getId()]['value'] = array();
+				$values[$group->getId()]['label'] = $group->getName();
 				foreach ($storeCollection as $store)
 				{
-					$index = count($values[$group->getName()]['value']);
-					$values[$group->getName()]['value'][$index]['value'] = $store->getId();
-					$values[$group->getName()]['value'][$index]['label'] = $store->getName();
-					$values[$group->getName()]['value'][$index]['title'] = $store->getName();
+					$index = count($values[$group->getId()]['value']);
+					$values[$group->getId()]['value'][$index]['value'] = $store->getId();
+					$values[$group->getId()]['value'][$index]['label'] = $store->getName();
+					$values[$group->getId()]['value'][$index]['title'] = $store->getName();
 				}
 			}
 		}
