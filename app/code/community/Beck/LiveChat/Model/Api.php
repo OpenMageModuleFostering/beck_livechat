@@ -4,6 +4,7 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 {
 	public function closesession($session_id)
 	{
+		$session_id = (int)$session_id;
 		$session = Mage::getModel('livechat/session')->load($session_id);
 		$session->Close();
 	}
@@ -39,6 +40,7 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 	
 	public function getmessages($session_id)
 	{
+		$session_id = (int)$session_id;
 		$result = array();
 		$session = Mage::getModel('livechat/session');
 		if ($session->Exist($session_id))
@@ -54,6 +56,7 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 	
 	public function sendmessage($session_id, $autor, $message)
 	{
+		$session_id = (int)$session_id;
 		$session = Mage::getModel('livechat/session');
 		if ($session->Exist($session_id))
 		{
@@ -67,15 +70,16 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 	{
 		$session_list = explode('-', $session_list);
 		$res = array();
-		foreach ($session_list as $id_session)
+		foreach ($session_list as $session_id)
 		{
-			$session = Mage::getModel('livechat/session')->load($id_session);
+			$session_id = (int)$session_id;
+			$session = Mage::getModel('livechat/session')->load($session_id);
 			if (Mage::Helper('livechat')->isSessionExpired($session))
 			{
 				$session->Expired();
 			}
 			$index  = count($res);
-			$res[$index]['id'] = $id_session;
+			$res[$index]['id'] = $session_id;
 			$res[$index]['customer_url'] = $session->getCustomer_url();
 			$res[$index]['close'] = $session->getClose();
 			$res[$index]['customer_name'] = $session->getCustomer_name();

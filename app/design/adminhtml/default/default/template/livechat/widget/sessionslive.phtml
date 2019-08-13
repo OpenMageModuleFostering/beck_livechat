@@ -4,13 +4,9 @@
         <td style="width:50%;"><h3 class="icon-head head-livechat">Sessions Live</h3></td>
 		<td class="a-right">
 <?php 
-$session = Mage::getSingleton('adminhtml/session');
+$session = Mage::getSingleton('livechat/adminSession');
 if ($session->getData('OperatorName') != null):
 $refreshrate = (int)Mage::getStoreConfig('livechatconfiguration/general/adminrefreshrate', 0);
-if ($refreshrate < 120)
-{
-	$refreshrate = 120;
-}
 ?>
 
 <script language="javascript">
@@ -18,10 +14,6 @@ if ($refreshrate < 120)
 	var urlUpdater = '<?php echo $this->urlUpdater; ?>';
 	var urlOperatorCloseSession = '<?php echo $this->urlOperatorCloseSession; ?>';
 </script>
-<form name="livechatloginloginform" id="livechatloginloginform" method="post" action="<?php echo $this->getUrl('*/*/logout'); ?>">
-<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>">
-<button class="scalable delete" onclick="javascript: livechatloginform.submit(); return false;"><span><?php echo $this->__('Log out'); ?></span></button>
-</form>
 <script type="text/javascript">
 
 function refresh (){window.location.replace('<?php echo $this->getUrl('*/*/index'); ?>');}

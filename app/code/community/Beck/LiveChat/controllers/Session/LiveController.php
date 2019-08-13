@@ -6,7 +6,7 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 	{
 		$this->loadLayout();
 		
-		$session = Mage::getSingleton('adminhtml/session');
+		$session = Mage::getSingleton('livechat/adminSession');
 		$operatorName = $session->getData('OperatorName');
 		$operator = Mage::getModel('livechat/operator');
 		
@@ -124,7 +124,7 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 		if (isset($post['Login']) && isset($post['Key']))
 		{
 			$res = $this->checkUserPermission($post['Login'], $post['Key']);
-			$session = Mage::getSingleton('adminhtml/session');
+			$session = Mage::getSingleton('livechat/adminSession');
 			if ($res)
 			{
 				$operator = Mage::getModel('livechat/operator');
@@ -154,7 +154,7 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 	public function logoutAction()
 	{
 		$post = $this->getRequest()->getPost();
-		$session = Mage::getSingleton('adminhtml/session');
+		$session = Mage::getSingleton('livechat/adminSession');
 		$operatorName = $session->getData('OperatorName');
 		$operator = Mage::getModel('livechat/operator');
 		$session->setData('OperatorName', null);

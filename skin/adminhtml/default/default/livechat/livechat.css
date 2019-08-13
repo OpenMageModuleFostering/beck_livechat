@@ -1,3 +1,20 @@
+.notification-livechat
+ { 
+	padding:5px 27px 5px 47px;
+	background:#CCCCFF url(../images/livechat/chat.png) 27px 5px no-repeat;
+	border:1px solid #9999FF;
+	border-top:2px solid #9999FF;
+	font-size:11px;
+	line-height:16px;
+	color:#444;
+	position:relative;
+}
+.notification-livechat .label { color:#eb5e00; }
+.notification-livechat .clickable { cursor:pointer; }
+.notification-livechat span.critical { color:#d20000; }
+.notification-livechat a:hover { text-decoration:none; }
+
+
 .head-livechat { background-image:url(../images/livechat/chat.png); }
 
 .livechat-box

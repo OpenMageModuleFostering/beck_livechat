@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <layout>
+	<default>
+		<reference name="head">
+			<action method="addCss"><name>livechat/livechat.css</name></action>
+		</reference>
+		<reference name="content">
+			<block type="livechat/notification_toolbar" after="notification_toolbar" name="livechat_toolbar" as="livechat_toolbar" template="livechat/notification/toolbar.phtml" />
+		</reference>
+	</default>
 	<livechat_session_list_index>
 		<reference name="head">
 			<action method="addCss"><name>livechat/livechat.css</name></action>
