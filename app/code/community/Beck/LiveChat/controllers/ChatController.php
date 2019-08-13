@@ -4,11 +4,31 @@ class Beck_LiveChat_ChatController extends Mage_Core_Controller_Front_Action
 {
 	public function sendmessageAction()
 	{
+		$forbiden_chars = array(
+								'&' => '&amp;',
+								'%' => '&#37;',
+								'<' => '&lt;',
+								'>' => '&gt;',
+								'!' => '&#124;',
+								'"' => '&quot;',
+								"\0" => '',
+								"\n" => '',
+								'|' => '',
+								'\\' => '',
+								"'" => '&#39;',
+								'$' => '&#36;',
+								'+' => '&#43;',
+								'-' => '&minus;',
+								'(' => '&#40;',
+								')' => '&#41;'
+								);
 		$store_id = $this->getRequest()->getParam('store_id', 0);
 		$session_id = Mage::getSingleton('checkout/session')->getSessionId();
-		//$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
-		$message = htmlentities(trim($this->getRequest()->getParam('message', '')));
-		//$message = trim($message);
+		$message = trim($this->getRequest()->getParam('message', ''));
+		foreach ($forbiden_chars as $char => $replacement)
+		{
+			$message = str_replace($char, $replacement, $message);
+		}
 		if ($message != '')
 		{
 			if (Mage::Helper('customer/data')->isLoggedIn())
