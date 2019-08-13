@@ -69,6 +69,15 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
 						</sessioncreation>
+						<nbmaxlines translate="label comment" module="livechat">
+							<label>Maximum number of lines displayed</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment>Set 0 to display all lines</comment>
+						</nbmaxlines>
                     </fields>
                 </general>
                 <display translate="label" module="livechat">
@@ -260,7 +269,7 @@
                         </allowcustomerreopen>
 					</fields>
 				</oncustomersendmessage>
-				<onsessionexpire>
+				<onsessionexpire translate="label comment" module="livechat">
 					<label>When the session expire</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>40</sort_order>

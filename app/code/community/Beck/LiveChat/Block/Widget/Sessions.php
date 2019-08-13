@@ -18,7 +18,7 @@ class Beck_LiveChat_Block_Widget_Sessions extends Mage_Adminhtml_Block_Widget
 	protected function _toHtml()
 	{
 	    $html = parent::_toHtml();
-		$session = Mage::getSingleton('adminhtml/session');
+		$session = Mage::getSingleton('livechat/adminSession');
 		if ($session->getData('OperatorName') != null)
 		{
 			foreach ($this->getSortedChildren() as $name)
@@ -38,7 +38,8 @@ class Beck_LiveChat_Block_Widget_Sessions extends Mage_Adminhtml_Block_Widget
 	public function AddChatSession(Beck_LiveChat_Model_Session $session)
 	{
 		//$block = $this->getLayout()->createBlock('livechat/widget_chat', 'chat_'.$session->getId());
-		$block = $this->getLayout()->createBlock('livechat/widget_chat', 'chat_'.rand(1, 9999));
+		///Zend_Debug::dump('AddChatSession '. $session->getId());
+		$block = $this->getLayout()->createBlock('livechat/widget_chat', 'chat_'.$session->getId());
 		$block->SetSession($session);
 		$this->append($block);
 	}

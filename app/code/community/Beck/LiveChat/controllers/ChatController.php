@@ -7,7 +7,7 @@ class Beck_LiveChat_ChatController extends Mage_Core_Controller_Front_Action
 		$store_id = $this->getRequest()->getParam('store_id', 0);
 		$session_id = Mage::getSingleton('checkout/session')->getSessionId();
 		//$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
-		$message = trim($this->getRequest()->getParam('message', ''));
+		$message = htmlentities(trim($this->getRequest()->getParam('message', '')));
 		//$message = trim($message);
 		if ($message != '')
 		{
@@ -61,7 +61,8 @@ class Beck_LiveChat_ChatController extends Mage_Core_Controller_Front_Action
 		$session = Mage::getModel('livechat/session');
 		if ($session->Exist($session_id))
 		{
-			$messages = $session->getMessages();
+			$nb_message_max = Mage::getStoreConfig('livechatconfiguration/general/nbmaxlines', 0);
+			$messages = $session->getMessages()->limit($nb_message_max);
 			foreach ($messages as $message)
 			{
 				echo $message->RenderLine();

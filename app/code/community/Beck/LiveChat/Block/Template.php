@@ -9,6 +9,7 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 	public $imageStyle = '3';
 	public $unavailablelabel = 'Sorry';
 	public $titlelabel = 'LIVECHAT';
+	public $nb_message_max = 10;
 	
 	protected function _construct()
 	{
@@ -22,6 +23,7 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 			$this->imageStyle			= $this->getConfigData('livechatconfiguration/display/imagestyle');
 			$this->unavailablelabel		= $this->getConfigData('livechatconfiguration/display/unavailablelabel');
 			$this->titlelabel			= $this->getConfigData('livechatconfiguration/display/titlelabel');
+			$this->nb_message_max 		= $this->getConfigData('livechatconfiguration/general/nbmaxlines');
 			$session_id = Mage::getSingleton('checkout/session')->getSessionId();
 			//$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
 			$session = Mage::getModel('livechat/session');
@@ -130,7 +132,8 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 		$session = Mage::getModel('livechat/session');
 		if ($session->Exist($session_id))
 		{
-			$messages = $session->getMessages();
+			
+			$messages = $session->getMessages()->limit($this->nb_message_max);
 			return ($messages);
 			//Zend_Debug::dump($messages);
 		}

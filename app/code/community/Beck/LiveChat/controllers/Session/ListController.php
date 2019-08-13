@@ -20,7 +20,7 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
 		{
 			$list[] = $customer->getSession_id();
 		}
-		$session = Mage::getSingleton('adminhtml/session');
+		$session = Mage::getSingleton('livechat/adminSession');
 		$session->setData('customerOnline', $list);
 	}
 	

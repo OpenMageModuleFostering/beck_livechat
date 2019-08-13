@@ -7,4 +7,26 @@ class Beck_LiveChat_Model_Mysql4_Archives_Message_Collection extends Mage_Core_M
 		parent::_construct();
 		$this->_init('livechat/archives_message');
 	}
+	
+	public function limit($limit)
+	{
+		$limit = (int) $limit;
+		if ($limit > 0)
+		{
+			if ($this->count() > $limit)
+			{
+				$i = 0;
+				$i_max = $this->count() - $limit;
+				foreach ($this->_items as $key => $val)
+				{
+					if ($i  < $i_max)
+					{
+						$this->removeItemByKey($key);
+					}
+					$i++;
+				}
+			}
+		}
+		return ($this);
+	}
 }

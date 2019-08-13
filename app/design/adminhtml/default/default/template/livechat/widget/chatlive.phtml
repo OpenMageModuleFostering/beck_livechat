@@ -1,6 +1,6 @@
 <?php if ($this->_session->getId() > 0): ?>
 <div class="base-livechat livechat-box mini-livechat left" id="chat_<?php echo $this->_session->getId(); ?>" style="display: block;">
-	<span style="float: right" class="close" onclick="javascript:OperatorCloseSession_<?php echo $this->_session->getId(); ?>();"></span><div class="head"><h4>Session #<?php echo $this->_session->getId(); ?></h4></div>
+	<span style="float: right" class="close" onclick="javascript:OperatorCloseSession_<?php echo $this->_session->getId(); ?>();"></span><div class="head"><h4><?php echo $this->__('Session'); ?> #<?php echo $this->_session->getId(); ?></h4></div>
 	<div class="content">
 		<p id="livechat_messages_<?php echo $this->_session->getId(); ?>"></p>
 	</div>

@@ -80,7 +80,7 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 				$session = Mage::getModel('livechat/session')->load($post['sessionId']);
 				if ($session->getClose() == '0')
 				{
-					$adminsession = Mage::getSingleton('adminhtml/session');
+					$adminsession = Mage::getSingleton('livechat/adminSession');
 					$name = $adminsession->getData('OperatorName');
 					$message = $session->saveMessage($name, $message);
 					echo $message->renderLine();
