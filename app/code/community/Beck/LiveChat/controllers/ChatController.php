@@ -5,7 +5,8 @@ class Beck_LiveChat_ChatController extends Mage_Core_Controller_Front_Action
 	public function sendmessageAction()
 	{
 		$store_id = $this->getRequest()->getParam('store_id', 0);
-		$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
+		$session_id = Mage::getSingleton('checkout/session')->getSessionId();
+		//$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
 		$message = trim($this->getRequest()->getParam('message', ''));
 		//$message = trim($message);
 		if ($message != '')

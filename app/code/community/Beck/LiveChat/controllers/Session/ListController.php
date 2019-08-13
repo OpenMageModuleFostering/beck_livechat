@@ -29,7 +29,7 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
         $this->loadLayout();
 		$this->getOnlineCustomers();
         $this->getResponse()->setBody(
-            $this->getLayout()->createBlock('livechat/session_list')->toHtml()
+            $this->getLayout()->createBlock('livechat/session_grid')->toHtml()
         );
     }
 	

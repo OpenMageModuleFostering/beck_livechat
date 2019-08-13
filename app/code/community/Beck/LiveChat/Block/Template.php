@@ -22,7 +22,8 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 			$this->imageStyle			= $this->getConfigData('livechatconfiguration/display/imagestyle');
 			$this->unavailablelabel		= $this->getConfigData('livechatconfiguration/display/unavailablelabel');
 			$this->titlelabel			= $this->getConfigData('livechatconfiguration/display/titlelabel');
-			$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
+			$session_id = Mage::getSingleton('checkout/session')->getSessionId();
+			//$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
 			$session = Mage::getModel('livechat/session');
 			if ($session->Exist($session_id))
 			{

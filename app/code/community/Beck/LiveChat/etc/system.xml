@@ -24,7 +24,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <active translate="label" module="livechat">
+                        <active translate="label comment" module="livechat">
                             <label>Is enabled</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -32,14 +32,16 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
+							<comment>Display LiveChat box in front office.</comment>
                         </active>
-                        <refreshfrequency translate="label" module="livechat">
+                        <refreshfrequency translate="label comment" module="livechat">
                             <label>Chat refresh frequency</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
+							<comment>Message refresh interval for customer (in seconds).</comment>
                         </refreshfrequency>
                         <refreshdecay translate="label" module="livechat">
                             <label>Chat refresh decay</label>
@@ -49,13 +51,14 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </refreshdecay>
-						<adminrefreshrate translate="label" module="livechat">
+						<adminrefreshrate translate="label comment" module="livechat">
                             <label>Admin refresh rate</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+							<comment>Admin operator page refresh rate (in seconds).</comment>
                         </adminrefreshrate>
 						<sessioncreation translate="label" module="livechat">
 							<label>Chat session creation</label>
@@ -101,37 +104,41 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </imagestyle>
-                        <unavailablelabel translate="label" module="livechat">
+                        <unavailablelabel translate="label comment" module="livechat">
                             <label>Unavailable message</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+							<comment>Message which is displaying when no operator are online.</comment>
                         </unavailablelabel>
-                        <defaultcustomername translate="label" module="livechat">
+                        <defaultcustomername translate="label comment" module="livechat">
                             <label>Default customer name</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+							<comment>Name of the customer when not logged in.</comment>
                         </defaultcustomername>
-                        <systemname translate="label" module="livechat">
+                        <systemname translate="label comment" module="livechat">
                             <label>System name</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+							<comment>Sender name of the automatic messages.</comment>
                         </systemname>
-                        <systemwaitmessage translate="label" module="livechat">
+                        <systemwaitmessage translate="label comment" module="livechat">
                             <label>System wait message</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+							<comment>Message sent when a customer has just started a chat session.</comment>
                         </systemwaitmessage>
 						<systemautosessionmessage translate="label" module="livechat">
 							<label>System message when session is automatically created</label>
@@ -140,6 +147,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+							<comment>Message sent when a chat has been automatically created.</comment>
 						</systemautosessionmessage>
                     </fields>
                 </display>
@@ -162,7 +170,7 @@
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
 					<fields>
-						<closesession translate="label" module="livechat">
+						<closesession translate="label comment" module="livechat">
                             <label>Close dispatched chat session</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -170,8 +178,9 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+							<comment>The chat session is closed, so no operator can get it.</comment>
                         </closesession>
-						<undispatchsession translate="label" module="livechat">
+						<undispatchsession translate="label comment" module="livechat">
                             <label>Undispatch non-closed chat session</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -179,6 +188,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+							<comment>The chat session is released, so another operator can get it.</comment>
                         </undispatchsession>
 					</fields>
 				</onoperatordisconnect>
@@ -238,7 +248,7 @@
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
 					<fields>
-						<allowcustomerreopen translate="label" module="livechat">
+						<allowcustomerreopen translate="label comment" module="livechat">
                             <label>Allow to reopen a closed chat session</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -246,6 +256,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+							<comment>If the chat session is not archived the customer can reactivate it by sending a new message.</comment>
                         </allowcustomerreopen>
 					</fields>
 				</oncustomersendmessage>
@@ -257,7 +268,7 @@
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
 					<fields>
-						<archive translate="label" module="livechat">
+						<archive translate="label comment" module="livechat">
                             <label>Archivate the session</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -265,6 +276,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+							<comment>Archived session are definitevely closed. If not chat sessions are only closed.</comment>
                         </archive>
 					</fields>
 				</onsessionexpire>

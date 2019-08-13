@@ -21,6 +21,20 @@ class Beck_LiveChat_Block_Operator_List extends Mage_Adminhtml_Block_Widget_Grid
         parent::_prepareCollection();
         return $this;
     }
+	
+	protected function _prepareMassaction()
+    {
+		$this->setMassactionIdField('id');
+        $this->getMassactionBlock()->setFormFieldName('operators');
+
+		$this->getMassactionBlock()->addItem('disconnect', array(
+			 'label'=> Mage::helper('livechat')->__('Disconnect'),
+			 'url'  => $this->getUrl('*/*/massDisconnect'),
+			 'confirm' => Mage::helper('livechat')->__('Are you sure ?')
+		));
+
+        return $this;
+    }
 
     protected function _prepareColumns()
     {

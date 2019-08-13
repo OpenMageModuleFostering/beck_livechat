@@ -73,4 +73,35 @@ class Beck_LiveChat_Operator_ListController extends Mage_Adminhtml_Controller_Ac
 		}
 		$this->_redirect('livechat/operator_list/edit/id/'.$operator->getId());
 	}
+	
+	public function massDisconnectAction()
+	{
+		$operatorsIds = $this->getRequest()->getParam('operators');
+        if (!is_array($operatorsIds))
+		{
+            $this->_getSession()->addError($this->__('Please select operator(s)'));
+        }
+        else
+		{
+            try
+			{
+				$nb = 0;
+                foreach ($operatorsIds as $operatorId)
+				{
+                    $operator = Mage::getSingleton('livechat/operator')->load($operatorId);
+					if ($operator->getIs_online() == '1')
+					{
+						$operator->Disconnected();
+						$nb++;
+					}
+                }
+                $this->_getSession()->addSuccess($this->__('Total of %d record(s) were successfully disconnected', $nb));
+            }
+			catch (Exception $e)
+			{
+                $this->_getSession()->addError($e->getMessage());
+            }
+        }
+		$this->_redirect('*/*');
+	}
 }

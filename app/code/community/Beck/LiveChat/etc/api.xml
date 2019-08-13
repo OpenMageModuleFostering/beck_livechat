@@ -39,6 +39,10 @@
 						<title>Get allowed stores</title>
                         <acl>livechat/getallowedstores</acl>
 					</getallowedstores>
+					<closesession translate="title" module="livechat">
+						<title>Close a session</title>
+						 <acl>livechat/closesession</acl>
+					</closesession>
                 </methods>
                 <faults module="livechat">
                 </faults>
@@ -73,6 +77,9 @@
 					<getallowedstores translate="title" module="livechat">	
 						<title>Get allowed stores</title>
 					</getallowedstores>
+					<closesession translate="title" module="livechat">
+						<title>Close a session</title>
+					</closesession>
                 </livechat>
             </resources>
         </acl>

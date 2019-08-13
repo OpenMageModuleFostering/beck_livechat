@@ -2,6 +2,12 @@
 
 class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 {
+	public function closesession($session_id)
+	{
+		$session = Mage::getModel('livechat/session')->load($session_id);
+		$session->Close();
+	}
+
 	public function getsessions($operatorName)
 	{
 		$result = array();
@@ -56,7 +62,7 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 		}
 		//return false;
 	}
-	/*
+	
 	public function UpdateSessions($session_list)
 	{
 		$session_list = explode('-', $session_list);
@@ -66,9 +72,13 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 			$session = Mage::getModel('livechat/session')->load($id_session);
 			$index  = count($res);
 			$res[$index]['id'] = $id_session;
+			$res[$index]['customer_url'] = $session->getCustomer_url();
+			$res[$index]['close'] = $session->getClose();
+			$res[$index]['customer_name'] = $session->getCustomer_name();
 		}
+		return ($res);
 	}
-	*/
+	
 	public function operatorconnect($name)
 	{
 		$operator = Mage::getModel('livechat/operator');
