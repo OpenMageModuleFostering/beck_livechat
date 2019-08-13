@@ -56,7 +56,7 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 	
 	public function sendmessage($session_id, $autor, $message)
 	{
-		$session_id = (int)$session_id;
+		$session_id = $session_id;
 		$session = Mage::getModel('livechat/session');
 		if ($session->Exist($session_id))
 		{
