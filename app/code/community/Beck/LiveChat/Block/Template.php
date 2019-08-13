@@ -113,9 +113,9 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 		$nb  = 0;
 		foreach ($operatorCollection as $operator)
 		{
-			echo '<b>Operator ' . $operator->getName() . '</b><br />';
-			echo 'Online = ' . $operator->getIs_online() . '<br />';
-			echo 'AffectedToStore('.$this->getStoreId().') = ' . (int)$operator->IsOperatorAffectedToStore($this->getStoreId()) . '<br /><br />';
+			//echo '<b>Operator ' . $operator->getName() . '</b><br />';
+			//echo 'Online = ' . $operator->getIs_online() . '<br />';
+			//echo 'AffectedToStore('.$this->getStoreId().') = ' . (int)$operator->IsOperatorAffectedToStore($this->getStoreId()) . '<br /><br />';
 			if ($operator->getIs_online() == '1')
 			{
 				if ($operator->IsOperatorAffectedToStore($this->getStoreId()))
@@ -124,7 +124,7 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 				}
 			}
 		}
-		echo '<u>Total online : '.$nb.'</u><br />';
+		//echo '<u>Total online : '.$nb.'</u><br />';
 		if ($nb > 0)
 		{
 			return true;

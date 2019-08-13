@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Beck_LiveChat>
-            <version>1.5.4</version>
+            <version>1.5.5</version>
         </Beck_LiveChat>
     </modules>
     <admin>
