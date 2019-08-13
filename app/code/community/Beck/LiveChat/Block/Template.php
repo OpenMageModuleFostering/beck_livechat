@@ -15,6 +15,13 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 	{
 		parent::_construct();
 		$this->isActive				= $this->getConfigData('livechatconfiguration/general/active') == '0' ? false : true;
+		
+		$limited_to_registered_user = $this->getConfigData('livechatconfiguration/display/limitregisteredusers') == '0' ? false : true;
+		if ($limited_to_registered_user == true)
+		{
+			$this->isActive = Mage::Helper('customer/data')->isLoggedIn();
+		}
+		
 		if ($this->isActive)
 		{
 			$this->refreshfrequency		= $this->getConfigData('livechatconfiguration/general/refreshfrequency');

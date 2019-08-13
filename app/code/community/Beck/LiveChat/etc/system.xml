@@ -78,6 +78,7 @@
                             <show_in_store>0</show_in_store>
 							<comment>Set 0 to display all lines</comment>
 						</nbmaxlines>
+						
                     </fields>
                 </general>
                 <display translate="label" module="livechat">
@@ -149,7 +150,7 @@
                             <show_in_store>1</show_in_store>
 							<comment>Message sent when a customer has just started a chat session.</comment>
                         </systemwaitmessage>
-						<systemautosessionmessage translate="label" module="livechat">
+						<systemautosessionmessage translate="label comment" module="livechat">
 							<label>System message when session is automatically created</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>7</sort_order>
@@ -158,6 +159,16 @@
                             <show_in_store>1</show_in_store>
 							<comment>Message sent when a chat has been automatically created.</comment>
 						</systemautosessionmessage>
+						<limitregisteredusers translate="label comment" module="livechat">
+							<label>Display only for registered user</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>If yes, only connected customer can see the chatbox.</comment>
+						</limitregisteredusers>
                     </fields>
                 </display>
             </groups>
