@@ -45,4 +45,12 @@
 			<block type="livechat/widget_sessions" name="livechat.sessions.live" />
 		</reference>
 	</livechat_session_live_index>
+	<livechat_reporting_index>
+		<reference name="head">
+			<action method="addJs"><script>livechat/AC_RunActiveContent.js</script></action>
+		</reference>
+		<reference name="content">
+			<block type="livechat/reporting" name="stats" template="livechat/reporting.phtml" />
+		</reference>
+	</livechat_reporting_index>
 </layout>
