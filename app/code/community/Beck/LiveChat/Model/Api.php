@@ -63,13 +63,17 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 		//return false;
 	}
 	
-	public function UpdateSessions($session_list)
+	public function updatesessions($session_list)
 	{
 		$session_list = explode('-', $session_list);
 		$res = array();
 		foreach ($session_list as $id_session)
 		{
 			$session = Mage::getModel('livechat/session')->load($id_session);
+			if (Mage::Helper('livechat')->isSessionExpired($session))
+			{
+				$session->Expired();
+			}
 			$index  = count($res);
 			$res[$index]['id'] = $id_session;
 			$res[$index]['customer_url'] = $session->getCustomer_url();

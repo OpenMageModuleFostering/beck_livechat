@@ -43,6 +43,10 @@
 						<title>Close a session</title>
 						 <acl>livechat/closesession</acl>
 					</closesession>
+					<updatesessions translate="title" module="livechat">
+						<title>Update existing sessions</title>
+						<acl>livechat/updatesessions</acl>
+					</updatesessions>
                 </methods>
                 <faults module="livechat">
                 </faults>
@@ -80,6 +84,9 @@
 					<closesession translate="title" module="livechat">
 						<title>Close a session</title>
 					</closesession>
+					<updatesessions translate="title" module="livechat">
+						<title>Update existing sessions</title>
+					</updatesessions>
                 </livechat>
             </resources>
         </acl>
