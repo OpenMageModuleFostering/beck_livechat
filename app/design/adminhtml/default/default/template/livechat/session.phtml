@@ -27,7 +27,18 @@
 <div class="content-header">
 <table cellspacing="0">
     <tr>
-        <td style="width:50%;"><h3 class="icon-head head-livechat"><?php echo Mage::helper('livechat')->__('Operators') ?></h3></td>
+        <td style="width:50%;"><h3 class="icon-head head-livechat">
+		<?php 
+		$type = $this->getRequest()->getParam('type', 'standard');
+		if ($type == 'standard')
+		{
+			echo Mage::helper('livechat')->__('Running chat sessions');
+		}
+		elseif ($type == 'archive')
+		{
+			echo Mage::helper('livechat')->__('Archived chat sessions');
+		}
+		?></h3></td>
         <td class="a-right">
             <?php echo $this->getAddNewButtonHtml() ?>
         </td>

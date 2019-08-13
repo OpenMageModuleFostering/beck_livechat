@@ -19,7 +19,7 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 			
 			foreach ($sessions as $session)
 			{
-				if (!$session->Expired($list))
+				if (!Mage::Helper('livechat')->isSessionExpired($session, $list))
 				{
 					if ($session->getDispatched() == 0 || $session->getDispatched() == $operator->getId())
 					{
@@ -30,7 +30,7 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 				}
 				else
 				{
-					$session->Close();
+					$session->Expired();
 				}
 			}
 		}

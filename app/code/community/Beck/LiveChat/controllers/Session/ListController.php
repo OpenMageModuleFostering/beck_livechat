@@ -5,12 +5,29 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
 	public function indexAction()
 	{
 		$this->loadLayout();
+		
+		$this->getOnlineCustomers();
+		
 		$this->renderLayout();
+	}
+	
+	protected function getOnlineCustomers()
+	{
+		$customerOnline = Mage::getResourceSingleton('log/visitor_collection')
+						->useOnlineFilter();
+		$list = array();
+		foreach ($customerOnline as $customer)
+		{
+			$list[] = $customer->getSession_id();
+		}
+		$session = Mage::getSingleton('adminhtml/session');
+		$session->setData('customerOnline', $list);
 	}
 	
 	public function gridAction()
     {
         $this->loadLayout();
+		$this->getOnlineCustomers();
         $this->getResponse()->setBody(
             $this->getLayout()->createBlock('livechat/session_list')->toHtml()
         );
@@ -43,7 +60,7 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
 			{
                 foreach ($sessionIds as $sessionId)
 				{
-                    $session = Mage::getSingleton('livechat/session')->load($sessionId);
+                    $session = Mage::getSingleton('livechat/archives_session')->load($sessionId);
                     Mage::dispatchEvent('livechat_controller_session_delete', array('session' => $session));
                     $session->Destroy();
                 }
@@ -54,7 +71,7 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
                 $this->_getSession()->addError($e->getMessage());
             }
         }
-		$this->_redirect('*/*');
+		$this->_redirect('*/*', array('type'=>'archive'));
 	}
 	
 	public function massCloseAction()
@@ -115,6 +132,7 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
     {
 		$messageIds = $this->getRequest()->getParam('message');
 		$sessionId = $this->getRequest()->getParam('sessionId', 0);
+		$type = $this->getRequest()->getParam('type', 'standard');
         if (!is_array($messageIds))
 		{
             $this->_getSession()->addError($this->__('Please select message(s)'));
@@ -125,9 +143,18 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
 			{
                 foreach ($messageIds as $messageId)
 				{
-                    $message = Mage::getSingleton('livechat/message')->load($messageId);
-                    Mage::dispatchEvent('livechat_controller_message_delete', array('message' => $message));
-                    $message->delete();
+					if ($type == 'standard')
+					{
+						$message = Mage::getSingleton('livechat/message')->load($messageId);
+						Mage::dispatchEvent('livechat_controller_message_delete', array('message' => $message));
+						$message->delete();
+					}
+					elseif ($type == 'archive')
+					{
+						$message = Mage::getSingleton('livechat/archives_message')->load($messageId);
+						Mage::dispatchEvent('livechat_controller_message_delete', array('message' => $message));
+						$message->delete();
+					}
                 }
                 $this->_getSession()->addSuccess($this->__('Total of %d record(s) were successfully deleted', count($messageIds)));
             }
@@ -136,6 +163,34 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
                 $this->_getSession()->addError($e->getMessage());
             }
         }
-		$this->_redirect('*/*/detail', array('sessionId'=>$sessionId));
+		$this->_redirect('*/*/detail', array('sessionId'=>$sessionId, 'type'=>$type));
+	}
+	
+	public function  massArchivateAction()
+	{
+		$sessionIds = $this->getRequest()->getParam('session');
+        if (!is_array($sessionIds))
+		{
+            $this->_getSession()->addError($this->__('Please select chat(s)'));
+        }
+        else
+		{
+            try
+			{
+                foreach ($sessionIds as $sessionId)
+				{
+                    $session = Mage::getSingleton('livechat/session')->load($sessionId);
+					$archive = Mage::getModel('livechat/archives_session')->archive($session);
+                    Mage::dispatchEvent('livechat_controller_session_archived', array('session' => $session));
+					
+				}
+                $this->_getSession()->addSuccess($this->__('Total of %d record(s) were successfully archived', count($sessionIds)));
+            }
+			catch (Exception $e)
+			{
+                $this->_getSession()->addError($e->getMessage());
+            }
+        }
+		$this->_redirect('*/*');
 	}
 }

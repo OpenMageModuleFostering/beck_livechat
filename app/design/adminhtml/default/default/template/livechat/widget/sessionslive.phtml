@@ -1,5 +1,8 @@
 <div class="content-header">
-    <h3 class="icon-head head-system-account">Sessions Live</h3><p class="content-buttons form-buttons">
+<table cellspacing="0">
+    <tr>
+        <td style="width:50%;"><h3 class="icon-head head-livechat">Sessions Live</h3></td>
+		<td class="a-right">
 <?php 
 $session = Mage::getSingleton('adminhtml/session');
 if ($session->getData('OperatorName') != null):
@@ -40,5 +43,7 @@ else:
     var livechatloginform = new varienForm('livechatloginloginform');
 </script>
 <?php endif; ?>
-</p>
+</td>
+</tr>
+</table>
 </div>

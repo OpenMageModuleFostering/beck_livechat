@@ -24,7 +24,7 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 			{
 				foreach ($sessions as $session)
 				{
-					if (!$session->Expired($list))
+					if (!Mage::Helper('livechat')->isSessionExpired($session, $list))
 					{
 						if ($session->getDispatched() == 0 || $session->getDispatched() == $operator->getId())
 						{
@@ -35,7 +35,7 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 					}
 					else
 					{
-						$session->Close();
+						$session->Expired();
 					}
 				}
 			}

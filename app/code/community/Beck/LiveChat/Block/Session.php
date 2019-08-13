@@ -1,11 +1,11 @@
 <?php 
-class Beck_LiveChat_Block_Session_Detail extends Mage_Adminhtml_Block_Template
+class Beck_LiveChat_Block_Session extends Mage_Adminhtml_Block_Template
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('livechat/session/detail.phtml');
+        $this->setTemplate('livechat/session.phtml');
     }
 
     protected function _prepareLayout()
@@ -16,8 +16,8 @@ class Beck_LiveChat_Block_Session_Detail extends Mage_Adminhtml_Block_Template
 			$this->setChild('add_new_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label'     => Mage::helper('livechat')->__('Back'),
-                    'onclick'   => "setLocation('".$this->getUrl('livechat/session_list/index/')."')",
+                    'label'     => Mage::helper('livechat')->__('View archived sessions'),
+                    'onclick'   => "setLocation('".$this->getUrl('livechat/session_list/index/type/archive')."')",
                     'class'   => 'scalable back'
                     ))
                 );
@@ -27,15 +27,15 @@ class Beck_LiveChat_Block_Session_Detail extends Mage_Adminhtml_Block_Template
 			$this->setChild('add_new_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label'     => Mage::helper('livechat')->__('Back'),
-                    'onclick'   => "setLocation('".$this->getUrl('livechat/session_list/index/type/archive')."')",
+                    'label'     => Mage::helper('livechat')->__('View live sessions'),
+                    'onclick'   => "setLocation('".$this->getUrl('livechat/session_list/index/')."')",
                     'class'   => 'scalable back'
                     ))
                 );
-			
 		}
         
-        $this->setChild('grid', $this->getLayout()->createBlock('livechat/session_detail_grid', 'session.detail.grid'));
+
+        $this->setChild('grid', $this->getLayout()->createBlock('livechat/session_grid', 'session.grid'));
         return parent::_prepareLayout();
     }
 

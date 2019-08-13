@@ -27,7 +27,10 @@
 <div class="content-header">
 <table cellspacing="0">
     <tr>
-        <td style="width:50%;"><h3 class="icon-head head-livechat"><?php echo Mage::helper('livechat')->__('Operators') ?></h3></td>
+        <td style="width:50%;"><h3 class="icon-head head-livechat">
+		<?php 
+			echo Mage::helper('livechat')->__('Messages');
+		?></h3></td>
         <td class="a-right">
             <?php echo $this->getAddNewButtonHtml() ?>
         </td>

@@ -1,6 +1,6 @@
 <?php
 
-class Beck_LiveChat_Block_Session_List extends Mage_Adminhtml_Block_Widget_Grid
+class Beck_LiveChat_Block_Session_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
 	public function __construct()
     {
@@ -16,8 +16,18 @@ class Beck_LiveChat_Block_Session_List extends Mage_Adminhtml_Block_Widget_Grid
 	
 	protected function _prepareCollection()
     {
-		$collection = Mage::getModel('livechat/session')->getCollection();
-		$this->setCollection($collection);
+		$type = $this->getRequest()->getParam('type', 'standard');
+		if ($type == 'standard')
+		{
+			$collection = Mage::getModel('livechat/session')->getCollection();
+			$this->setCollection($collection);
+		}
+		elseif ($type == 'archive')
+		{
+			$collection = Mage::getModel('livechat/archives_session')->getCollection();
+			$this->setCollection($collection);
+		}
+		
         parent::_prepareCollection();
         return $this;
     }
@@ -87,21 +97,33 @@ class Beck_LiveChat_Block_Session_List extends Mage_Adminhtml_Block_Widget_Grid
     {
 		$this->setMassactionIdField('id');
         $this->getMassactionBlock()->setFormFieldName('session');
-		$this->getMassactionBlock()->addItem('open', array(
+		$type = $this->getRequest()->getParam('type', 'standard');
+		if ($type == 'standard')
+		{
+			$this->getMassactionBlock()->addItem('open', array(
              'label'=> Mage::helper('livechat')->__('Open'),
              'url'  => $this->getUrl('*/*/massOpen'),
              'confirm' => Mage::helper('livechat')->__('Are you sure ?')
-        ));
-        $this->getMassactionBlock()->addItem('close', array(
-             'label'=> Mage::helper('livechat')->__('Close'),
-             'url'  => $this->getUrl('*/*/massClose'),
-             'confirm' => Mage::helper('livechat')->__('Are you sure ?')
-        ));
-		$this->getMassactionBlock()->addItem('delete', array(
+			));
+	        $this->getMassactionBlock()->addItem('close', array(
+	             'label'=> Mage::helper('livechat')->__('Close'),
+	             'url'  => $this->getUrl('*/*/massClose'),
+	             'confirm' => Mage::helper('livechat')->__('Are you sure ?')
+	        ));
+			$this->getMassactionBlock()->addItem('archive', array(
+	             'label'=> Mage::helper('livechat')->__('Archive'),
+	             'url'  => $this->getUrl('*/*/massArchivate'),
+	             'confirm' => Mage::helper('livechat')->__('Are you sure ?')
+	        ));
+		}
+		elseif ($type == 'archive')
+		{
+			$this->getMassactionBlock()->addItem('delete', array(
              'label'=> Mage::helper('livechat')->__('Delete'),
              'url'  => $this->getUrl('*/*/massDelete'),
              'confirm' => Mage::helper('livechat')->__('Are you sure ?')
-        ));
+			));
+		}
         return $this;
     }
 
@@ -112,6 +134,7 @@ class Beck_LiveChat_Block_Session_List extends Mage_Adminhtml_Block_Widget_Grid
 	
 	public function getRowUrl($row)
 	{
-		return $this->getUrl('*/*/detail', array('sessionId'=>$row->getId()));
+		$type = $this->getRequest()->getParam('type', 'standard');
+		return $this->getUrl('*/*/detail', array('sessionId' => $row->getId(), 'type' => $type));
 	}
 }

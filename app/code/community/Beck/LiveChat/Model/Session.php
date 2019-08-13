@@ -89,6 +89,20 @@ class Beck_LiveChat_Model_Session extends Mage_Core_Model_Abstract
 		}
 	}
 	
+	public function Expired()
+	{
+		$this->Close();
+		$archivate = Mage::getStoreConfig('livechatevents/onsessionexpire/archive', 0) == '1' ? true : false;
+		if ($archivate)
+		{
+			$archive = Mage::getModel('livechat/archives_session');
+			$archive->archive($this);
+			return $archive;
+		}
+		return $this;
+	}
+	
+	/*
 	public function Expired(array $customerOnlines)
 	{
 		$result = true;
@@ -111,6 +125,7 @@ class Beck_LiveChat_Model_Session extends Mage_Core_Model_Abstract
 		}
 		return ($result);
 	}
+	*/
 
 	public function getNewMessages($CurrentMessages)
 	{
