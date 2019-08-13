@@ -14,7 +14,7 @@ class Beck_LiveChat_Block_Reporting extends Mage_Adminhtml_Block_Template
 				$count_order++;
 			}
 		}
-		if ($total_chart <= 0)
+		if ($total_chat <= 0)
 		{
 			$percent_order = 0;
 			$percent_noorder = 100;
