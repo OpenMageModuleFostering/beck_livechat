@@ -83,7 +83,10 @@ class Beck_LiveChat_Model_Operator extends Mage_Core_Model_Abstract
 			$sessions = $this->getDispatchedSessions();
 			foreach ($sessions as $session)
 			{
-				$session->setDispatched(0)->save();
+				if ($session->getClose() == '0')
+				{
+					$session->setDispatched(0)->save();
+				}
 			}
 		}
 		return $this;

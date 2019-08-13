@@ -87,7 +87,11 @@ class Beck_LiveChat_Block_Session_List extends Mage_Adminhtml_Block_Widget_Grid
     {
 		$this->setMassactionIdField('id');
         $this->getMassactionBlock()->setFormFieldName('session');
-
+		$this->getMassactionBlock()->addItem('open', array(
+             'label'=> Mage::helper('livechat')->__('Open'),
+             'url'  => $this->getUrl('*/*/massOpen'),
+             'confirm' => Mage::helper('livechat')->__('Are you sure ?')
+        ));
         $this->getMassactionBlock()->addItem('close', array(
              'label'=> Mage::helper('livechat')->__('Close'),
              'url'  => $this->getUrl('*/*/massClose'),

@@ -8,7 +8,7 @@
 .base-livechat
 {
 	border:1px solid #c4c1bc;
-	background:#fff;
+	background:#f8f7f5;
 	font-size:.95em;
 }
 
@@ -58,3 +58,15 @@
 	padding-bottom: 6px;
 	padding-left: 6px;
 }
+
+.close
+{  
+	width: 16px; 
+	height: 16px; 
+	background: transparent url(../images/livechat/close.png) no-repeat; 
+} 
+
+.close:hover
+{ 
+	background: transparent url(../images/livechat/close_hover.png) no-repeat;
+} 

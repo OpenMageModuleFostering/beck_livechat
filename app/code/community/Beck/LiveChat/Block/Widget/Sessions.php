@@ -4,6 +4,7 @@ class Beck_LiveChat_Block_Widget_Sessions extends Mage_Adminhtml_Block_Widget
 {	
 	protected $urlUpdater = '';
 	protected $urlSendMessage = '';
+	protected $urlOperatorCloseSession = '';
 
 	public function __construct()
     {
@@ -11,6 +12,7 @@ class Beck_LiveChat_Block_Widget_Sessions extends Mage_Adminhtml_Block_Widget
         $this->setTemplate('livechat'.DS.'widget'.DS.'sessionslive.phtml');
 		$this->urlUpdater = $this->getUrl('*/*/updater');
 		$this->urlSendMessage = $this->getUrl('*/*/sendMessage');
+		$this->urlOperatorCloseSession = $this->getUrl('*/*/closeSession');
     }
 	
 	protected function _toHtml()

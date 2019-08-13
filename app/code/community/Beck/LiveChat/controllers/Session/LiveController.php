@@ -70,7 +70,7 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 			if ($session->getClose() == '1')
 			{
 				echo "<br />".$this->__('This session is closed, you cannot send message.');
-				echo "<br /><button class=\"form-button-alt delete\" onclick=\"javascript:Close_".$post['sessionId']."();\">";
+				echo "<br /><button class=\"form-button-alt delete\" onclick=\"javascript:CloseChatBox_".$post['sessionId']."();\">";
 				echo "<span>".$this->__('Close')."</span></button>";
 			}
 		}
@@ -178,4 +178,13 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 		$this->getLayout()->getBlock('livechat.sessions.live')->AddChatSession($session);
 	}
 	
+	public function closeSessionAction()
+	{
+		$post = $this->getRequest()->getPost();
+		if (isset($post['sessionId']))
+		{
+			$session = Mage::getModel('livechat/session')->load($post['sessionId']);
+			$session->Close();
+		}
+	}
 }

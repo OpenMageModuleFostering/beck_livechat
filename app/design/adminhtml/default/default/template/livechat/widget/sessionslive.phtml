@@ -13,6 +13,7 @@ if ($refreshrate < 120)
 <script language="javascript">
 	var urlSendMessage = '<?php echo $this->urlSendMessage; ?>';
 	var urlUpdater = '<?php echo $this->urlUpdater; ?>';
+	var urlOperatorCloseSession = '<?php echo $this->urlOperatorCloseSession; ?>';
 </script>
 <form name="livechatloginloginform" id="livechatloginloginform" method="post" action="<?php echo $this->getUrl('*/*/logout'); ?>">
 <input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>">

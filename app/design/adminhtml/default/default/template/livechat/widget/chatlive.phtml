@@ -1,6 +1,6 @@
 <?php if ($this->_session->getId() > 0): ?>
 <div class="base-livechat livechat-box mini-livechat left" id="chat_<?php echo $this->_session->getId(); ?>" style="display: block;">
-	<div class="head"><h4>Session #<?php echo $this->_session->getId(); ?></h4></div>
+	<span style="float: right" class="close" onclick="javascript:OperatorCloseSession_<?php echo $this->_session->getId(); ?>();"></span><div class="head"><h4>Session #<?php echo $this->_session->getId(); ?></h4></div>
 	<div class="content">
 		<p id="livechat_messages_<?php echo $this->_session->getId(); ?>"></p>
 	</div>
@@ -67,13 +67,28 @@ function LiveChatKeyPress_<?php echo $this->_session->getId(); ?>(e) {
     }
 }
 
-function Close_<?php echo $this->_session->getId() ?>()
+function CloseChatBox_<?php echo $this->_session->getId() ?>()
 {
 	chatupdater<?php echo $this->_session->getId(); ?>.stop();
 	var chat = document.getElementById('chat_<?php echo $this->_session->getId(); ?>');
 	if (chat != null)
 	{
 		chat.style.display = 'none';
+	}
+}
+
+function OperatorCloseSession_<?php echo $this->_session->getId() ?>()
+{
+	if (confirm('<?php echo $this->__('Are you sure ?'); ?>'))
+	{
+		new Ajax.Request(
+			urlOperatorCloseSession,
+			{
+				method: 'post',
+				parameters: {sessionId: <?php echo $this->_session->getId() ?>},
+				onSuccess: function() { CloseChatBox_<?php echo $this->_session->getId() ?>(); }
+			}
+		);
 	}
 }
 </script>

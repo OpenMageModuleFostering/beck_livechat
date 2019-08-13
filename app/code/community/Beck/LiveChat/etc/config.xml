@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Beck_LiveChat>
-            <version>1.3.1</version>
+            <version>1.3.2</version>
         </Beck_LiveChat>
     </modules>
 	
@@ -90,6 +90,15 @@
         </layout>
     </adminhtml>
     <frontend>
+		<routers>
+            <livechat>
+                <use>standard</use>
+                <args>
+                    <module>Beck_LiveChat</module>
+                    <frontName>flivechat</frontName>
+                </args>
+            </livechat>
+        </routers>
         <translate>
             <modules>
                 <Beck_LiveChat>

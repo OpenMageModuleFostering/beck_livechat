@@ -152,6 +152,14 @@ class Beck_LiveChat_Model_Session extends Mage_Core_Model_Abstract
 		if ($this->getId() > 0)
 		{
 			$this->setClose('0')->save();
+			if ($this->getDispatched() > 0)
+			{
+				$operator = Mage::getModel('livechat/operator')->load($this->getDispatched());
+				if ($operator->getIs_online() == '0')
+				{
+					$this->setDispatched(0)->save();
+				}
+			}
 		}
 		return ($this);
 	}

@@ -84,6 +84,33 @@ class Beck_LiveChat_Session_ListController extends Mage_Adminhtml_Controller_Act
 		$this->_redirect('*/*');
 	}
 	
+	public function massOpenAction()
+    {
+		$sessionIds = $this->getRequest()->getParam('session');
+        if (!is_array($sessionIds))
+		{
+            $this->_getSession()->addError($this->__('Please select chat(s)'));
+        }
+        else
+		{
+            try
+			{
+                foreach ($sessionIds as $sessionId)
+				{
+                    $session = Mage::getSingleton('livechat/session')->load($sessionId);
+                    Mage::dispatchEvent('livechat_controller_session_open', array('session' => $session));
+                    $session->Open();
+                }
+                $this->_getSession()->addSuccess($this->__('Total of %d record(s) were successfully opened', count($sessionIds)));
+            }
+			catch (Exception $e)
+			{
+                $this->_getSession()->addError($e->getMessage());
+            }
+        }
+		$this->_redirect('*/*');
+	}
+	
 	public function massMessageDeleteAction()
     {
 		$messageIds = $this->getRequest()->getParam('message');

@@ -1,7 +1,7 @@
 <?php
 	if ($this->isActive):
-	$urlUpdater = $this->getUrl('livechat/chat/getMessageSession', array('store_id'=>Mage::app()->getStore(true)->getId()));
-	$urlSendMessage = $this->getUrl('livechat/chat/sendmessage', array('store_id'=>Mage::app()->getStore(true)->getId()));
+	$urlUpdater = $this->getUrl('flivechat/chat/getMessageSession', array('store_id'=>Mage::app()->getStore(true)->getId()));
+	$urlSendMessage = $this->getUrl('flivechat/chat/sendmessage', array('store_id'=>Mage::app()->getStore(true)->getId()));
 	
 	echo '<script language="javascript">';
 	echo "\nvar urlSendMessage = '$urlSendMessage';\n";
