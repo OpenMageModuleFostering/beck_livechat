@@ -79,10 +79,17 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 				$session->Expired();
 			}
 			$index  = count($res);
-			$res[$index]['id'] = $session_id;
-			$res[$index]['customer_url'] = $session->getCustomer_url();
-			$res[$index]['close'] = $session->getClose();
-			$res[$index]['customer_name'] = $session->getCustomer_name();
+			if ($session->getId() === null)
+			{
+				$session = Mage::getModel('livechat/archives_session')->load($session_id);
+			}
+			if ($session->getId() !== null)
+			{
+				$res[$index]['id'] = $session_id;
+				$res[$index]['customer_url'] = $session->getCustomer_url();
+				$res[$index]['close'] = $session->getClose();
+				$res[$index]['customer_name'] = $session->getCustomer_name();
+			}
 		}
 		return ($res);
 	}
