@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Beck_LiveChat",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "A LiveChat in your Magento Store",
+    "authors": [
+    {
+        "name": "Fabrice Beck",
+        "email": "fabrice.beck@fia-net.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

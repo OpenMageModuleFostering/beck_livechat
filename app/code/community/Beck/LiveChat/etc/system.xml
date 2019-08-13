@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <tabs>
+        <livechat translate="label" module="livechat">
+            <label>LiveChat</label>
+            <sort_order>999</sort_order>
+        </livechat>
+    </tabs>
+    <sections>
+        <livechatconfiguration translate="label" module="livechat">
+            <label>Configuration</label>
+            <tab>livechat</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="livechat">
+                    <label>General options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label" module="livechat">
+                            <label>Is enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <refreshfrequency translate="label" module="livechat">
+                            <label>Chat refresh frequency</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </refreshfrequency>
+                        <refreshdecay translate="label" module="livechat">
+                            <label>Chat refresh decay</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </refreshdecay>
+						<adminrefreshrate translate="label" module="livechat">
+                            <label>Admin refresh rate</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </adminrefreshrate>
+						<sessioncreation translate="label" module="livechat">
+							<label>Chat session creation</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>livechat/source_sessionCreation</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+						</sessioncreation>
+                    </fields>
+                </general>
+                <display translate="label" module="livechat">
+                    <label>Display options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<titlelabel translate="label" module="livechat">
+                            <label>Title label</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </titlelabel>
+                        <chatlabel translate="label" module="livechat">
+                            <label>Chat label</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </chatlabel>
+                        <imagestyle translate="label" module="livechat">
+                            <label>Image style</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>livechat/source_images</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </imagestyle>
+                        <unavailablelabel translate="label" module="livechat">
+                            <label>Unavailable message</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </unavailablelabel>
+                        <defaultcustomername translate="label" module="livechat">
+                            <label>Default customer name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </defaultcustomername>
+                        <systemname translate="label" module="livechat">
+                            <label>System name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </systemname>
+                        <systemwaitmessage translate="label" module="livechat">
+                            <label>System wait message</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </systemwaitmessage>
+						<systemautosessionmessage translate="label" module="livechat">
+							<label>System message when session is automatically created</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</systemautosessionmessage>
+                    </fields>
+                </display>
+            </groups>
+        </livechatconfiguration>
+        <livechatevents translate="label" module="livechat">
+			<label>Behaviour</label>
+            <tab>livechat</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>20</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+			<groups>
+				<onoperatordisconnect translate="label" module="livechat">
+					<label>On Operator disconnect</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+					<fields>
+						<closesession translate="label" module="livechat">
+                            <label>Close dispatched chat session</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </closesession>
+						<undispatchsession translate="label" module="livechat">
+                            <label>Undispatch non-closed chat session</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </undispatchsession>
+					</fields>
+				</onoperatordisconnect>
+				<onsessionclose translate="label" module="livechat">
+					<label>On chat session close</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+					<fields>
+						<sendclosemessage translate="label" module="livechat">
+                            <label>Send a close message</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sendclosemessage>
+						
+					</fields>
+				</onsessionclose>
+				<oncustomerconnexion translate="label" module="livechat">
+					<label>On customer connexion</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+					<fields>
+						<changechatcreatorname translate="label" module="livechat">
+                            <label>Replace the chat session creator name</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </changechatcreatorname>
+						<changeallcustomermessageautor translate="label" module="livechat">
+                            <label>Replace all customer's messages autor name</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </changeallcustomermessageautor>
+					</fields>
+				</oncustomerconnexion>
+				<oncustomersendmessage translate="label" module="livechat">
+					<label>When the customer sends a message</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+					<fields>
+						<allowcustomerreopen translate="label" module="livechat">
+                            <label>Allow to reopen a closed chat session</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </allowcustomerreopen>
+					</fields>
+				</oncustomersendmessage>
+			</groups>
+		</livechatevents>
+    </sections>
+</config>
