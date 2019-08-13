@@ -123,3 +123,5 @@
 "Convert rate","Taux de transformation"
 "Chat with order","Chat avec commande"
 "Chat without order","Chat sans commande"
+"Hide LiveChat box when no operator are presents","Cacher la boîte LiveChat quand aucun operateur n'est en ligne"
+"If yes, the chatbox will disapear when no operator are present.","Si oui, la boîte LiveChat sera cachée aux internautes si aucun opérateur n'est en ligne"

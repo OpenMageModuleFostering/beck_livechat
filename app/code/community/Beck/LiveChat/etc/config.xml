@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Beck_LiveChat>
-            <version>1.5.6</version>
+            <version>1.5.7</version>
         </Beck_LiveChat>
     </modules>
     <admin>
@@ -249,6 +249,7 @@
                 <systemwaitmessage>Your message has been sent, an operator will answer you soon</systemwaitmessage>
 				<systemautosessionmessage>Welcome, you can now discuss with an operator</systemautosessionmessage>
 				<limitregisteredusers>0</limitregisteredusers>
+				<hidewhennooperatoronline>0</hidewhennooperatoronline>
             </display>
         </livechatconfiguration>
 		<livechatevents>

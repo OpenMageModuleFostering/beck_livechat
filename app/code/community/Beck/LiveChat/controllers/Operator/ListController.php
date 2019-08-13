@@ -22,6 +22,13 @@ class Beck_LiveChat_Operator_ListController extends Mage_Adminhtml_Controller_Ac
 		$this->renderLayout();
 	}
 	
+	public function deleteAction()
+	{
+		$operator = Mage::getModel('livechat/operator')->load($this->getRequest()->getParam('id'));
+		$operator->setStore_allowed('')->save();
+		$this->_redirect('livechat/operator_list/edit/id/'.$this->getRequest()->getParam('id'));
+	}
+	
 	public function saveAction()
 	{
 		$post = $this->getRequest()->getPost();
