@@ -53,12 +53,18 @@ class Beck_LiveChat_Block_Operator_List extends Mage_Adminhtml_Block_Widget_Grid
 		$this->addColumn('is_online',
             array(
                 'header'=> Mage::helper('livechat')->__('Status'),
-                'type'  => 'text',
                 'index' => 'is_online',
 				'type' => 'select',
 				'renderer'=>'livechat/widget_grid_column_renderer_online',
 				'filter'=>'livechat/widget_grid_column_filter_online',
 				'options'=>Beck_LiveChat_Model_Source_Online::toOptionsArray()
+        ));
+		$this->addColumn('store_allowed',
+            array(
+                'header'=> Mage::helper('livechat')->__('Affected stores'),
+                'index' => 'store_allowed',
+				'renderer'=>'livechat/widget_grid_column_renderer_affectedstore',
+				'filter'=>'livechat/widget_grid_column_filter_affectedstore'
         ));
 		
         return parent::_prepareColumns();

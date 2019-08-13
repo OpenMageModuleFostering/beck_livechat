@@ -125,3 +125,8 @@
 "Chat without order","Chat sans commande"
 "Hide LiveChat box when no operator are presents","Cacher la boîte LiveChat quand aucun operateur n'est en ligne"
 "If yes, the chatbox will disapear when no operator are present.","Si oui, la boîte LiveChat sera cachée aux internautes si aucun opérateur n'est en ligne"
+"New operator must be affected to a store","Un nouvel opérateur doit être affecté à un magasin"
+"The created operator %s must be affected to a store, whithout that he will never be considered online.","L'opérateur %s nouvellement créé doit être affecté à un magasin, sans cela il ne sera jamais considéré comme étant en ligne."
+"Configure","Configurer"
+"No store affected","Aucune affectation magasin"
+"Affected stores","Magasins d'affectation"
