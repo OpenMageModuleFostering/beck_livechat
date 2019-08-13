@@ -94,7 +94,7 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 		{
 			$url = $this->getSkinUrl('images/livechat/livechat_icon_'.$this->imageStyle.'_online.gif');
 		}
-		$img = '<img src="'.$url.'" alt="'.$this->chatlabel.'" style="float:left">';
+		$img = '<img src="'.$url.'" alt="'.$this->chatlabel.'" class="livechat-image">';
 		return $img;
 	}
 	
