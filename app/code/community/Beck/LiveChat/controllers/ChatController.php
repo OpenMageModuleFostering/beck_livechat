@@ -57,7 +57,7 @@ class Beck_LiveChat_ChatController extends Mage_Core_Controller_Front_Action
 	
 	public function getMessageSessionAction()
 	{
-		$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
+		$session_id = Mage::getSingleton('checkout/session')->getSessionId();
 		$session = Mage::getModel('livechat/session');
 		if ($session->Exist($session_id))
 		{
