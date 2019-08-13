@@ -6,20 +6,14 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 	{
 		$result = array();
 		$operator = Mage::getModel('livechat/operator');
-		$customerOnline = Mage::getResourceSingleton('log/visitor_collection')
-            				->useOnlineFilter();
-		$list = array();
-		foreach ($customerOnline as $customer)
-		{
-			$list[] = $customer->getSession_id();
-		}
+
 		if ($operator->Exist($operatorName))
 		{
 			$sessions = $operator->getSessionsAvailable();
 			
 			foreach ($sessions as $session)
 			{
-				if (!Mage::Helper('livechat')->isSessionExpired($session, $list))
+				if (!Mage::Helper('livechat')->isSessionExpired($session))
 				{
 					if ($session->getDispatched() == 0 || $session->getDispatched() == $operator->getId())
 					{
@@ -62,7 +56,19 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 		}
 		//return false;
 	}
-	
+	/*
+	public function UpdateSessions($session_list)
+	{
+		$session_list = explode('-', $session_list);
+		$res = array();
+		foreach ($session_list as $id_session)
+		{
+			$session = Mage::getModel('livechat/session')->load($id_session);
+			$index  = count($res);
+			$res[$index]['id'] = $id_session;
+		}
+	}
+	*/
 	public function operatorconnect($name)
 	{
 		$operator = Mage::getModel('livechat/operator');
@@ -102,6 +108,8 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 		$sessions = $this->getsessions($operatorName);
 		
 		$result = array();
+		//Zend_Debug::dump($sessions, 'sessions');
+		//Zend_Debug::dump($current_sessions, 'current_sessions');
 		foreach ($sessions as $session)
 		{
 			if (!in_array($session['id'], $current_sessions, false))
@@ -110,6 +118,68 @@ class Beck_LiveChat_Model_Api extends Mage_Api_Model_Resource_Abstract
 			}
 		}
 		return ($result);
+	}
+	
+	public function getAllowedStores($operatorName)
+	{
+		//IsOperatorAffectedToStore
+		$result = array();
+		$operator = Mage::getModel('livechat/operator');
+		if ($operator->Exist($operatorName))
+		{
+			$storeList = $this->getStoreList();
+			foreach ($storeList['websites'] as $website)
+			{
+				foreach ($website['groups'] as $group)
+				{
+					foreach ($group['stores'] as $store)
+					{
+						if ($operator->IsOperatorAffectedToStore($store['id']))
+						{
+							$index = count($result);
+							$result[$index]['websitename'] = $website['name'];
+							$result[$index]['websiteid'] = (int)$website['id'];
+							$result[$index]['groupname'] = $group['name'];
+							$result[$index]['groupid'] = (int)$group['id'];
+							$result[$index]['storename'] = $store['name'];
+							$result[$index]['storecode'] = $store['code'];
+							$result[$index]['storeid'] = (int)$store['id'];
+						}
+					}
+				}
+			}
+		}
+		//Zend_Debug::dump($result);
+		return $result;
+	}
+	
+	private function getStoreList()
+	{
+		$values['websites'] = array();
+		$websiteCollection = Mage::getModel('core/website')->getResourceCollection();
+		foreach ($websiteCollection as $website)
+		{
+			$values['websites'][$website->getId()]['id'] = $website->getId();
+			$values['websites'][$website->getId()]['name'] = $website->getName();
+			$values['websites'][$website->getId()]['code'] = $website->getCode();
+			$values['websites'][$website->getId()]['groups'] = array();
+			$groupCollection = $website->getGroupCollection();
+			foreach ($groupCollection as $group)
+			{
+				$values['websites'][$website->getId()]['groups'][$group->getId()]['id'] = $group->getId();
+				$values['websites'][$website->getId()]['groups'][$group->getId()]['name'] = $group->getName();
+				$values['websites'][$website->getId()]['groups'][$group->getId()]['code'] = $group->getCode();
+				$values['websites'][$website->getId()]['groups'][$group->getId()]['stores'] = array();
+				$storeCollection = $group->getStoreCollection();
+				foreach ($storeCollection as $store)
+				{
+					$values['websites'][$website->getId()]['groups'][$group->getId()]['stores'][$store->getId()]['id'] = $store->getId();
+					$values['websites'][$website->getId()]['groups'][$group->getId()]['stores'][$store->getId()]['name'] = $store->getName();
+					$values['websites'][$website->getId()]['groups'][$group->getId()]['stores'][$store->getId()]['code'] = $store->getCode();
+				}
+			}
+		}
+		return $values;
 	}
 	
 	private function FormatCurrentData($current_Data)

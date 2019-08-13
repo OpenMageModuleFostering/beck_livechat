@@ -7,19 +7,12 @@ class Beck_LiveChat_Block_Widget_Grid_Column_Renderer_State extends Mage_Adminht
 		$html = '';
 		$state = (int)$row->close;
 		
-		$list = array();
-		
-		$session = Mage::getSingleton('adminhtml/session');
-		$list = $session->getData('customerOnline');
-		
+				
 		$session = Mage::getModel('livechat/session')->load($row->id);
-		if (is_array($list))
+		if (Mage::Helper('livechat')->isSessionExpired($session))
 		{
-			if (Mage::Helper('livechat')->isSessionExpired($session, $list))
-			{
-				$session->Expired();
-				$state = 1;
-			}
+			$session->Expired();
+			$state = 1;
 		}
 		
 		if ($state == 1)

@@ -12,19 +12,12 @@ class Beck_LiveChat_Session_LiveController extends Mage_Adminhtml_Controller_Act
 		
 		if ($operator->Exist($operatorName))
 		{
-			$customerOnline = Mage::getResourceSingleton('log/visitor_collection')
-            				->useOnlineFilter();
-			$list = array();
-			foreach ($customerOnline as $customer)
-			{
-				$list[] = $customer->getSession_id();
-			}
 			$sessions = $operator->getSessionsAvailable();
 			if (count($sessions) > 0)
 			{
 				foreach ($sessions as $session)
 				{
-					if (!Mage::Helper('livechat')->isSessionExpired($session, $list))
+					if (!Mage::Helper('livechat')->isSessionExpired($session))
 					{
 						if ($session->getDispatched() == 0 || $session->getDispatched() == $operator->getId())
 						{

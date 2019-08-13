@@ -35,6 +35,10 @@
                         <title>Get new sessions</title>
                         <acl>livechat/refreshsessions</acl>
                     </refreshsessions>
+					<getallowedstores translate="title" module="livechat">
+						<title>Get allowed stores</title>
+                        <acl>livechat/getallowedstores</acl>
+					</getallowedstores>
                 </methods>
                 <faults module="livechat">
                 </faults>
@@ -66,6 +70,9 @@
 					<refreshsessions translate="title" module="livechat">
                         <title>Get new sessions</title>
                     </refreshsessions>
+					<getallowedstores translate="title" module="livechat">	
+						<title>Get allowed stores</title>
+					</getallowedstores>
                 </livechat>
             </resources>
         </acl>
