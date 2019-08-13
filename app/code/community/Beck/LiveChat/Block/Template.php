@@ -83,7 +83,7 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 	
 	public function ChatSessionStarted()
 	{
-		$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
+		$session_id = Mage::getSingleton('checkout/session')->getSessionId();
 		return (Mage::getModel('livechat/session')->Exist($session_id));
 	}
 	
@@ -126,7 +126,7 @@ class Beck_LiveChat_Block_Template extends Mage_Core_Block_Template
 	
 	public function getMessages()
 	{
-		$session_id = Mage::getSingleton('checkout/session')->getEncryptedSessionId();
+		$session_id = Mage::getSingleton('checkout/session')->getSessionId();
 		$session = Mage::getModel('livechat/session');
 		if ($session->Exist($session_id))
 		{
